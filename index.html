@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="asteroids.css" type="text/css" charset="utf-8">
+    <title>Asteroids</title>
+    <script src="assets/jquery-2.1.1.js"></script>
+    <script src="assets/keymaster.js"></script>
+    <script src="assets/inherits.js"></script>
+    <script src="math.js"></script>
+    <script src="movingObject.js"></script>
+    <script src="rotatingObject.js"></script>
+    <script src="game.js"></script>
+    <script src="asteroid.js"></script>
+    <script src="ship.js"></script>
+    <script src="bullet.js"></script>
+    <script src="hud.js"></script>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+      var canvas = document.getElementById('canvas');
+      canvas.height = window.innerHeight - 20;
+      canvas.width = window.innerWidth - 20;
+      var ctx = canvas.getContext("2d")
+      game = new Asteroids.Game(canvas.height, canvas.width, ctx);
+      game.start();
+    </script>
+</body>
+</html>
