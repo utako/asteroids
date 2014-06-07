@@ -48,14 +48,17 @@
   
   HUD.prototype.drawNextLevel = function(level, score) {
     var ctx = this.ctx;
+    ctx.save()
     var dimX = this.game.width;
     var dimY = this.game.height;
+    ctx.fillStyle = 'white';
     ctx.font = "80pt sans-serif";
     ctx.textAlign = 'center';
-    var level = "Level " + level + " Cleared";
+    var level = "Level " + (parseInt(level)-1) + " Cleared";
     ctx.fillText(level, dimX/2, dimY/2);
     ctx.font = '20px Helvetica';
     ctx.fillText('please press [ enter ] to begin next level', dimX/2, dimY/2 + 70 );
+    ctx.reset();
   };
 
 })(this);
