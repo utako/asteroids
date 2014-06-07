@@ -2,7 +2,6 @@
   var Asteroids = root.Asteroids = (root.Asteroids || {});
 
   var MovingObject = Asteroids.MovingObject = function(pos, vel, radius, color){
-    var colors = ["#155919", "#20918C", "#FADB50", "#7D41CC", "#A3263D"];
     this.pos = pos;
     this.vel = vel;
     this.radius = (radius * Math.random());
@@ -22,7 +21,6 @@
     var width = this.radius;
     var height = 0;
     var start = 2 * Math.PI;
-    // ctx.fillStyle = this.color;
     ctx.save();
     
     ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';

@@ -9,8 +9,9 @@
     this.height = height;
     this.width = width;
     this.HUD = new Asteroids.HUD(ctx, this);
-    this.bindKeyHandlers();
     this.mode = 'start';
+    key.setScope('start');
+    this.bindKeyHandlers();
     this.startScreen();
   };
   
@@ -51,6 +52,7 @@
   Game.prototype.winningConditions = function () {
     if (this.asteroids.length === 0) {
       this.mode = 'nextLevel';
+      key.setScope('start');
       this.maxAsteroids = this.maxAsteroids + 5;
       this.addAsteroids(this.maxAsteroids);
       this.level++;
@@ -112,9 +114,10 @@
         game.asteroids.push(new Asteroids.Asteroid(asteroid.pos, newVel, asteroid.radius, asteroid.color));
         asteroids.splice(asteroids.indexOf(asteroid), 1);
       }
-
     });
+
     this.ship.move();
+    
     if (this.ship.pos[0] <= 0 || this.ship.pos[0] >= window.innerWidth || this.ship.pos[1] <= 0 || this.ship.pos[1] >= window.innerHeight) {
     var pos;
       if (this.ship.pos[0] <= 0) {
@@ -145,6 +148,7 @@
   
   Game.prototype.startPlaying = function (numAsteroids) {
     this.mode = 'play';
+    key.setScope('play');
     this.stop();
     this.resetObjects();
     this.setUp();
@@ -211,8 +215,14 @@
 
   Game.prototype.bindKeyHandlers = function(){
     var game = this;
-    key('f', function() {game.start(10)} );
-    key('enter', function() {game.startPlaying(game.maxAsteroids)});
+    key('f', function() {game.start(10)} ); 
+    // if (this.mode === 'start') {
+//       key('enter', function() {game.startPlaying(game.maxAsteroids)});
+//     }
+//     
+    key('enter', 'start', function(){game.startPlaying(game.maxAsteroids)});
+    key('enter', 'play', function() {});
+    
     $(document).keyup(function(event) {
       if (event.keyCode === 32) {
         game.fireBullet();
