@@ -47,9 +47,9 @@
     // ctx.globalAlpha = 0.5;
     ctx.fillStyle = this.color;
     console.log(this.theta);
-    ctx.moveTo(posX + sin(-this.theta), posY + cos(-this.theta));
-    ctx.lineTo(posX+30*sin(-(15+270+this.theta)), posY+30*cos(-(15+270+this.theta)));
-    ctx.lineTo(posX+30*sin(-(-15+270+this.theta)), posY+30*cos(-(-15+270+this.theta)));
+    ctx.moveTo(posX + 15*sin(-(90+this.theta)), posY + 15*cos((90+this.theta)));
+    ctx.lineTo(posX+15*sin(-(30+270+this.theta)), posY+15*cos(-(30+270+this.theta)));
+    ctx.lineTo(posX+15*sin(-(-30+270+this.theta)), posY+15*cos(-(-30+270+this.theta)));
     ctx.fill();
   };
 
@@ -58,7 +58,8 @@
     var y1 = this.pos[1];
     var x2 = otherObj.pos[0];
     var y2 = otherObj.pos[1];
-    var sumRadii = otherObj.radius + 3;
+    debugger
+    var sumRadii = otherObj.radius + 15;
     var distX = Math.pow((x2-x1),2);
     var distY = Math.pow((y2-y1),2);
 

@@ -5,7 +5,7 @@
     this.ctx = ctx;
     this.level = 1;
     this.score = 0;
-    this.maxAsteroids = 10;
+    this.maxAsteroids = 1;
     this.height = height;
     this.width = width;
     this.HUD = new Asteroids.HUD(ctx, this);
