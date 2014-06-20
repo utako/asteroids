@@ -5,7 +5,7 @@
     this.ctx = ctx;
     this.level = 1;
     this.score = 0;
-    this.maxAsteroids = 1;
+    this.maxAsteroids = 10;
     this.height = height;
     this.width = width;
     this.HUD = new Asteroids.HUD(ctx, this);
@@ -188,11 +188,9 @@
 
   Game.prototype.removeAsteroid = function(asteroid) {
     this.asteroids.splice(this.asteroids.indexOf(asteroid), 1);
-//    delete this.asteroids[this.asteroids.indexOf(asteroid)];
   };
 
   Game.prototype.removeBullet = function(bullet) {
-    // delete this.bullets[this.bullets.indexOf(bullet)];
     this.bullets.splice(this.bullets.indexOf(bullet), 1);
   };
 
@@ -201,7 +199,6 @@
     var game = this;
     this.asteroids.forEach(function(asteroid) {
       if (ship.isCollidedWith.bind(ship, asteroid)()) {
-        // game.explodeShip();
        game.stop();
        var message = "GAME OVER. YOUR SCORE: " + game.score;
        game.ctx.textAlign = 'center';
@@ -216,10 +213,6 @@
   Game.prototype.bindKeyHandlers = function(){
     var game = this;
     key('f', function() {game.start(10)} ); 
-    // if (this.mode === 'start') {
-//       key('enter', function() {game.startPlaying(game.maxAsteroids)});
-//     }
-//     
     key('enter', 'start', function(){game.startPlaying(game.maxAsteroids)});
     key('enter', 'play', function() {});
     

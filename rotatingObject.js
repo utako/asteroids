@@ -58,7 +58,6 @@
     var y1 = this.pos[1];
     var x2 = otherObj.pos[0];
     var y2 = otherObj.pos[1];
-    debugger
     var sumRadii = otherObj.radius + 15;
     var distX = Math.pow((x2-x1),2);
     var distY = Math.pow((y2-y1),2);

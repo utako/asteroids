@@ -40,6 +40,8 @@
   };
 
   MovingObject.prototype.isCollidedWith = function(otherObj) {
+    
+    debugger
     var x1 = this.pos[0];
     var y1 = this.pos[1];
     var x2 = otherObj.pos[0];
@@ -51,9 +53,9 @@
     var distX = Math.pow((x2-x1),2);
     var distY = Math.pow((y2-y1),2);
 
-    ctx.moveTo(posX + 15*sin(-(90+this.theta)), posY + 15*cos((90+this.theta)));
-    ctx.lineTo(posX+15*sin(-(30+270+this.theta)), posY+15*cos(-(30+270+this.theta)));
-    ctx.lineTo(posX+15*sin(-(-30+270+this.theta)), posY+15*cos(-(-30+270+this.theta)));
+    // ctx.moveTo(posX + 15*sin(-(90+this.theta)), posY + 15*cos((90+this.theta)));
+    // ctx.lineTo(posX+15*sin(-(30+270+this.theta)), posY+15*cos(-(30+270+this.theta)));
+    // ctx.lineTo(posX+15*sin(-(-30+270+this.theta)), posY+15*cos(-(-30+270+this.theta)));
 
     if(Math.sqrt(distX + distY) < (sumRadii)){
       return true;
