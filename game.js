@@ -159,6 +159,7 @@
   
   Game.prototype.start = function () {
     var game = this;
+    this.HUD.getHighScores();
     this.interval = setInterval(game.step.bind(game), Game.FPS);
   };
   
@@ -205,7 +206,14 @@
        game.ctx.font = "60px sans-serif";
        game.ctx.fillStyle = "white";
        game.ctx.fillText(message, canvas.width/2, canvas.height/2);
-
+       game.HUD.highScores = _.sortBy(game.HUD.highScores, function(score) {return score.score});
+       var name = prompt("Enter our ranks. Please tell us who you are.", "HELLO");
+       while (name.length > 5) {
+         name = prompt("Your name is too long (4 character max).", "ANON");
+       }
+       name = name.toUpperCase();
+       game.HUD.addHighScore(game.score, name);
+       game.HUD.drawGameOver();
       }
     });
   };

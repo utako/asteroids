@@ -41,7 +41,6 @@
 
   MovingObject.prototype.isCollidedWith = function(otherObj) {
     
-    debugger
     var x1 = this.pos[0];
     var y1 = this.pos[1];
     var x2 = otherObj.pos[0];

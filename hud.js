@@ -4,6 +4,7 @@
   var HUD = Asteroids.HUD = function (ctx, game) {
     this.ctx = ctx;
     this.game = game;
+    this.highScores;
   };
   
   HUD.prototype.drawStart = function () {
@@ -59,6 +60,68 @@
     ctx.font = '20px Helvetica';
     ctx.fillText('please press [ enter ] to begin next level', dimX/2, dimY/2 + 70 );
     ctx.reset();
+  };
+  
+  HUD.prototype.drawGameOver = function() {
+    this.getHighScores();
+    var highScores = this.highScores;
+    var ctx = this.ctx;
+    var dimX = this.game.width;
+    var dimY = this.game.height;
+    var j = 0;
+    ctx.save();
+    ctx.fillStyle = 'black';
+    ctx.globalAlpha=0.9;
+    ctx.fillRect(dimX/2-225,dimY/3-150,dimX/2-250,dimY/3+150);
+    ctx.restore();
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#9C2424';
+    ctx.font = '40px Helvetica';
+    var title = "HIGH SCORES";
+    ctx.fillText(title, dimX/2, dimY/3-40);
+    for (var i=(highScores.length-1); i>=(highScores.length-11); i--) {
+      ctx.font = '20px Helvetica';
+      ctx.fillStyle = '#9C2424';
+      var name = highScores[i].name;
+      var score = highScores[i].score;
+      ctx.fillText(name, dimX/2-50, dimY/3+j*20);
+      ctx.fillText(score, dimX/2+50, dimY/3+j*20);
+      j++;
+    };
+  };
+  
+  HUD.prototype.getHighScores = function() {
+    var url = 'https://api.mongolab.com/api/1/databases/asteroids/collections/highscores';
+    var queryString = '?apiKey=YuwrD4eop-WZwClUO0P7jqNNaXh9uLLD';
+    var HUD = this;
+    $.ajax({
+      url: url + queryString,
+      type: "GET",
+      dataType: 'json',
+      success: function(data) {
+        var sortedScores = _.sortBy(data, function(score) { return score.score } )
+        HUD.highScores = sortedScores;
+      }
+    });
+  };
+  
+  HUD.prototype.addHighScore = function(score, name) {
+    var url = 'https://api.mongolab.com/api/1/databases/asteroids/collections/highscores';
+    var queryString = '?apiKey=YuwrD4eop-WZwClUO0P7jqNNaXh9uLLD';
+    var HUD = this;
+    var scoreData = {
+      name: name,
+      score: score
+    };
+    $.ajax({
+      url: url + queryString,
+      type: "POST",
+      data: JSON.stringify(scoreData),
+      contentType: "application/json",
+      success: function() {
+        HUD.getHighScores();
+      }
+    });
   };
 
 })(this);
