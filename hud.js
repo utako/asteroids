@@ -59,7 +59,7 @@
     ctx.fillText(level, dimX/2, dimY/2);
     ctx.font = '20px Helvetica';
     ctx.fillText('please press [ enter ] to begin next level', dimX/2, dimY/2 + 70 );
-    ctx.reset();
+    ctx.restore();
   };
   
   HUD.prototype.drawGameOver = function() {
@@ -68,17 +68,21 @@
     var ctx = this.ctx;
     var dimX = this.game.width;
     var dimY = this.game.height;
-    var j = 0;
-    ctx.save();
-    ctx.fillStyle = 'black';
-    ctx.globalAlpha=0.9;
-    ctx.fillRect(dimX/2-175,dimY/4-58,350,365);
-    ctx.restore();
+    var k = 1;
+    for (var i=7; i>0; i--) {
+      ctx.save()
+      ctx.fillStyle = '#0E2224';
+      ctx.globalAlpha = 0.1*i;
+      ctx.fillRect(dimX/2-175-4*k, dimY/4-58-4*k, 350 + 8*k, 365 + 8*k);
+      ctx.restore();
+      k++;
+    }
     ctx.textAlign = 'center';
     ctx.fillStyle = '#9C2424';
     ctx.font = '40px Helvetica';
     var title = "HALL OF FAME";
     ctx.fillText(title, dimX/2, dimY/3-40);
+    var j = 0;
     for (var i=(highScores.length-1); i>=(highScores.length-11); i--) {
       ctx.font = '20px Helvetica';
       ctx.fillStyle = '#9C2424';
