@@ -40,13 +40,11 @@
   };
 
   RotatingObject.prototype.drawShip = function(ctx) {
-    console.log(this.pos);
     var posX = this.pos[0];
     var posY = this.pos[1];
     ctx.beginPath();
     // ctx.globalAlpha = 0.5;
     ctx.fillStyle = this.color;
-    console.log(this.theta);
     ctx.moveTo(posX + 15*sin(-(90+this.theta)), posY + 15*cos((90+this.theta)));
     ctx.lineTo(posX+15*sin(-(30+270+this.theta)), posY+15*cos(-(30+270+this.theta)));
     ctx.lineTo(posX+15*sin(-(-30+270+this.theta)), posY+15*cos(-(-30+270+this.theta)));

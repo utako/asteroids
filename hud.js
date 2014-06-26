@@ -72,12 +72,12 @@
     ctx.save();
     ctx.fillStyle = 'black';
     ctx.globalAlpha=0.9;
-    ctx.fillRect(dimX/2-225,dimY/3-150,dimX/2-250,dimY/3+150);
+    ctx.fillRect(dimX/2-175,dimY/4-58,350,365);
     ctx.restore();
     ctx.textAlign = 'center';
     ctx.fillStyle = '#9C2424';
     ctx.font = '40px Helvetica';
-    var title = "HIGH SCORES";
+    var title = "HALL OF FAME";
     ctx.fillText(title, dimX/2, dimY/3-40);
     for (var i=(highScores.length-1); i>=(highScores.length-11); i--) {
       ctx.font = '20px Helvetica';
