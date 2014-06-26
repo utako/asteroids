@@ -208,12 +208,13 @@
        game.ctx.fillText(message, canvas.width/2, canvas.height/2);
        game.HUD.highScores = _.sortBy(game.HUD.highScores, function(score) {return score.score});
        var name = prompt("Enter our ranks. Please tell us who you are.", "HELLO");
-       while (name.length > 5) {
-         name = prompt("Your name is too long (4 character max).", "ANON");
+       while (name.length > 6) {
+         name = prompt("Your name is too long (6 character max).", "ANYONG");
        }
        name = name.toUpperCase();
        game.HUD.addHighScore(game.score, name);
-       game.HUD.drawGameOver();
+       window.setTimeout(function() {game.HUD.drawGameOver();}, 1200);
+       key.setScope('gameover');
       }
     });
   };
